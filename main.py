@@ -18,6 +18,6 @@ from scripts.generate_data import generate_genes, generate_primers
 if __name__ == "__main__":
     # path_input = parse_args().input
     # path_output = parse_args().output
-    path_genes = generate_genes()
-    path_primers = generate_primers()
-    print(f"Created files:\n" f"genes: {path_genes}\n" f"primers: {path_primers}\n")
+    path_genes = generate_genes("data/genes.fasta")
+    path_primers = generate_primers("data/primers.fasta")
+    print(f"Created files for analysis:\n" f"{path_genes}\n" f"{path_primers}\n")

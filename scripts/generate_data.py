@@ -5,10 +5,10 @@ NUCLEOTIDES = ["A", "T", "G", "C"]
 
 
 def generate_primers(
+    filename: str = "data/primers.fasta",
     n_primers: int = 10,
     min_primer_length: int = 10,
     max_primer_length: int = 50,
-    filename: str = "data/primers.fasta",
 ) -> str:
     """
     Generates random primers for analysis.
@@ -39,11 +39,11 @@ def generate_primers(
 
 
 def generate_genes(
+    filename: str = "data/genes.fasta",
     n_genes: int = 10,
     min_gene_size: int = 100,
     max_gene_size: int = 340,
     line_size_in_fasta: int = 70,
-    filename: str = "data/genes.fasta",
 ) -> str:
     """
     Generates random genes for analysis.
