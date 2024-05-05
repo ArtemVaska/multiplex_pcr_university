@@ -1,3 +1,5 @@
+import os
+
 from scripts.analysis import find_primer_dimers
 from scripts.generate_data import generate_genes, generate_primers
 from scripts.read_filter_data import (
@@ -10,6 +12,9 @@ from scripts.read_filter_data import (
 if __name__ == "__main__":
     # path_input = parse_args().input
     # path_output = parse_args().output
+
+    if not os.path.exists("data/"):
+        os.mkdir("data/")
 
     path_genes = generate_genes("data/genes.fasta")
     path_primers = generate_primers("data/primers.fasta")
