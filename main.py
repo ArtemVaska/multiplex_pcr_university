@@ -1,6 +1,6 @@
 import argparse
 
-from generate_data import generate_genes, generate_primers
+from scripts.generate_data import generate_genes, generate_primers
 
 # def parse_args():
 #     parser = argparse.ArgumentParser(
