@@ -4,40 +4,6 @@ RNG = np.random.default_rng()
 NUCLEOTIDES = ["A", "T", "G", "C"]
 
 
-def generate_primers(
-    filename: str = "data/primers.fasta",
-    n_primers: int = 10,
-    min_primer_length: int = 10,
-    max_primer_length: int = 50,
-) -> str:
-    """
-    Generates random primers for analysis.
-    :param n_primers:
-    :param min_primer_length:
-    :param max_primer_length:
-    :param filename:
-    :return: path to output file
-    """
-    primer_range = range(1, n_primers + 1)
-
-    with open(filename, "w") as file:
-        for primer_number in primer_range:
-            for primer_subnumber in primer_range:
-                primer_length = RNG.integers(
-                    low=min_primer_length, high=max_primer_length
-                )
-                primer_F_seq = "".join(np.random.choice(NUCLEOTIDES, primer_length))
-                primer_R_seq = "".join(np.random.choice(NUCLEOTIDES, primer_length))
-                file.write(
-                    f">loc_{primer_number}.{primer_subnumber}_F\n"
-                    f"{primer_F_seq}\n"
-                    f">loc_{primer_number}.{primer_subnumber}_R\n"
-                    f"{primer_R_seq}\n"
-                )
-
-    return filename
-
-
 def generate_genes(
     filename: str = "data/genes.fasta",
     n_genes: int = 10,
@@ -72,5 +38,39 @@ def generate_genes(
                     np.random.choice(NUCLEOTIDES, remain_gene_length)
                 )
                 file.write(f"{remain_gene_seq}\n")
+
+    return filename
+
+
+def generate_primers(
+    filename: str = "data/primers.fasta",
+    n_primers: int = 10,
+    min_primer_length: int = 10,
+    max_primer_length: int = 50,
+) -> str:
+    """
+    Generates random primers for analysis.
+    :param n_primers:
+    :param min_primer_length:
+    :param max_primer_length:
+    :param filename:
+    :return: path to output file
+    """
+    primer_range = range(1, n_primers + 1)
+
+    with open(filename, "w") as file:
+        for primer_number in primer_range:
+            for primer_subnumber in primer_range:
+                primers_length = RNG.integers(
+                    low=min_primer_length, high=max_primer_length, size=2
+                )
+                primer_F_seq = "".join(np.random.choice(NUCLEOTIDES, primers_length[0]))
+                primer_R_seq = "".join(np.random.choice(NUCLEOTIDES, primers_length[1]))
+                file.write(
+                    f">loc_{primer_number}_{primer_subnumber}.F\n"
+                    f"{primer_F_seq}\n"
+                    f">loc_{primer_number}_{primer_subnumber}.R\n"
+                    f"{primer_R_seq}\n"
+                )
 
     return filename
